@@ -1,259 +1,254 @@
-regimen = {
-    "sa": {
-        "nombre_regimen": "Sociedad Anónima (S.A.)",
-        "descripción": "Sociedad Anónima con responsabilidad limitada al capital aportado.",
-        "mercantil": True,
-        "min_socios": 2,
-        "capital_minimo": True,
-        "flexibilidad_admin": "Moderada",
-        "uso": "Empresas medianas y grandes",
-        "derechos": (
+regimen_legal = {
+    "Sociedad Anónima (S.A.)": {
+        "Descripción general": "Sociedad Anónima con responsabilidad limitada al capital aportado.",
+        "Es sociedad mercantil": "Sí",
+        "Número mínimo de socios": 2,
+        "Capital mínimo requerido": "Sí",
+        "Flexibilidad en administración": "Moderada",
+        "Uso común": "Empresas medianas y grandes",
+        "Derechos": (
             "Emitir acciones para financiamiento",
             "Acceso a mercados bursátiles",
             "Responsabilidad limitada para accionistas",
         ),
-        "obligaciones_fiscales": (
+        "Obligaciones Fiscales": (
             "Pago de ISR e IVA",
             "Declaraciones mensuales y anuales",
             "Contabilidad electrónica",
             "Retención de impuestos a empleados",
         ),
-        "obligaciones_legales": (
+        "Obligaciones Legales": (
             "Celebración de asambleas anuales",
             "Registro en el RFC",
             "Depósito de estados financieros",
             "Renovación de matrícula mercantil",
         ),
-        "características": (
+        "Características": (
             "Gobierno corporativo estructurado",
             "Mayor regulación en transparencia financiera",
             "Requiere consejo de administración",
         ),
     },
-    "srl": {
-        "nombre_regimen": "Sociedad de Responsabilidad Limitada (S. de R.L.)",
-        "descripción": "Sociedad de Responsabilidad Limitada sin títulos negociables.",
-        "mercantil": True,
-        "min_socios": 2,
-        "capital_minimo": False,
-        "flexibilidad_admin": "Alta",
-        "uso": "Negocios familiares o pequeños",
-        "derechos": (
+    "Sociedad de Responsabilidad Limitada (S. de R.L.)": {
+        "Descripción general": "Sociedad de Responsabilidad Limitada sin títulos negociables.",
+        "Es sociedad mercantil": "Sí",
+        "Número mínimo de socios": 2,
+        "Capital mínimo requerido": "No",
+        "Flexibilidad en administración": "Alta",
+        "Uso común": "Negocios familiares o pequeños",
+        "Derechos": (
             "Limitación de responsabilidad de los socios",
             "Flexibilidad en estructura organizativa",
             "No requiere emisión de acciones",
         ),
-        "obligaciones_fiscales": (
+        "Obligaciones Fiscales": (
             "Pago de ISR e IVA",
             "Declaraciones mensuales y anuales",
             "Contabilidad electrónica",
             "Retención de impuestos a empleados",
         ),
-        "obligaciones_legales": (
+        "Obligaciones Legales": (
             "Celebración de asambleas anuales",
             "Registro en el RFC",
             "Depósito de estados financieros",
             "Renovación de matrícula mercantil",
         ),
-        "características": (
+        "Características": (
             "Adecuada para pequeñas y medianas empresas",
             "Menos regulación que una S.A.",
             "Cada socio tiene participación proporcional en decisiones",
         ),
     },
-    "sapi": {
-        "nombre_regimen": "Sociedad Anónima Promotora de Inversión (S.A.P.I.)",
-        "descripción": "Variante flexible de la S.A. para inversión.",
-        "mercantil": True,
-        "min_socios": 2,
-        "capital_minimo": True,
-        "flexibilidad_admin": "Muy flexible",
-        "uso": "Empresas con potencial de inversión",
-        "derechos": (
+    "Sociedad Anónima Promotora de Inversión (S.A.P.I.)": {
+        "Descripción general": "Variante flexible de la S.A. para inversión.",
+        "Es sociedad mercantil": "Sí",
+        "Número mínimo de socios": 2,
+        "Capital mínimo requerido": "Sí",
+        "Flexibilidad en administración": "Muy flexible",
+        "Uso común": "Empresas con potencial de inversión",
+        "Derechos": (
             "Facilidad para atraer inversión privada",
             "Permite pactos entre socios sin restricciones estrictas",
             "Puede evolucionar hacia una S.A.B. (Sociedad Anónima Bursátil)",
         ),
-        "obligaciones_fiscales": (
+        "Obligaciones Fiscales": (
             "Pago de ISR e IVA",
             "Declaraciones mensuales y anuales",
             "Contabilidad electrónica",
             "Retención de impuestos a empleados",
         ),
-        "obligaciones_legales": (
+        "Obligaciones Legales": (
             "Celebración de asambleas anuales",
             "Registro en el RFC",
             "Depósito de estados financieros",
             "Renovación de matrícula mercantil",
         ),
-        "características": (
+        "Características": (
             "Utilizada por startups y empresas en crecimiento",
             "Ofrece mayor flexibilidad en gobierno corporativo",
             "Regulación intermedia entre S.A. y S.A.B.",
         ),
     },
-    "sas": {
-        "nombre_regimen": "Sociedad por Acciones Simplificada (S.A.S.)",
-        "descripción": "Sociedad de una sola persona con un proceso ágil de creación.",
-        "mercantil": True,
-        "min_socios": 1,
-        "capital_minimo": False,
-        "flexibilidad_admin": "Alta",
-        "uso": "Emprendimientos pequeños",
-        "derechos": (
+    "Sociedad por Acciones Simplificada (S.A.S.)": {
+        "Descripción general": "Sociedad de una sola persona con un proceso ágil de creación.",
+        "Es sociedad mercantil": "Sí",
+        "Número mínimo de socios": 1,
+        "Capital mínimo requerido": "No",
+        "Flexibilidad en administración": "Alta",
+        "Uso común": "Emprendimientos pequeños",
+        "Derechos": (
             "Constitución ágil y electrónica",
             "No requiere capital mínimo inicial",
             "Acceso a responsabilidad limitada sin estructura compleja",
         ),
-        "obligaciones_fiscales": (
+        "Obligaciones Fiscales": (
             "Pago de ISR e IVA",
             "Declaraciones mensuales y anuales",
             "Contabilidad electrónica",
         ),
-        "obligaciones_legales": (
+        "Obligaciones Legales": (
             "Registro en el RFC",
             "Renovación de matrícula mercantil",
         ),
-        "características": (
+        "Características": (
             "Ideal para emprendedores y pequeñas empresas",
             "Menos burocracia y costos de operación",
             "No puede cotizar en bolsa ni captar inversión pública",
         ),
     },
-    "sc": {
-        "nombre_regimen": "Sociedad Civil (S.C.)",
-        "descripción": "Sociedad utilizada para servicios profesionales.",
-        "mercantil": False,
-        "min_socios": 2,
-        "capital_minimo": False,
-        "flexibilidad_admin": "Variable",
-        "uso": "Servicios profesionales (abogados, consultores, etc.)",
-        "derechos": (
+    "Sociedad Civil (S.C.)": {
+        "Descripción general": "Sociedad utilizada para servicios profesionales.",
+        "Es sociedad mercantil": "No",
+        "Número mínimo de socios": 2,
+        "Capital mínimo requerido": "No",
+        "Flexibilidad en administración": "Variable",
+        "Uso común": "Servicios profesionales (abogados, consultores, etc.)",
+        "Derechos": (
             "Flexibilidad en estructura y operación",
             "Uso común en profesiones liberales",
             "No tiene fines de lucro mercantil",
         ),
-        "obligaciones_fiscales": (
+        "Obligaciones Fiscales": (
             "Pago de ISR",
             "Declaraciones anuales",
             "Contabilidad electrónica",
         ),
-        "obligaciones_legales": (
+        "Obligaciones Legales": (
             "Registro en el RFC",
             "Renovación de matrícula mercantil",
         ),
-        "características": (
+        "Características": (
             "Responsabilidad ilimitada de los socios en algunos casos",
             "No puede realizar actividades comerciales masivas",
             "Opera como asociación de profesionales con objetivos comunes",
         ),
     },
-    "sca": {
-        "nombre_regimen": "Sociedad Comandita por Acciones (S. en C.A.)",
-        "descripción": "Sociedad con socios comanditarios e ilimitados.",
-        "mercantil": True,
-        "min_socios": 2,
-        "capital_minimo": True,
-        "flexibilidad_admin": "Moderada",
-        "uso": "Empresas con socios inversionistas y gestores activos",
-        "derechos": (
+    "Sociedad Comandita por Acciones (S. en C.A.)": {
+        "Descripción general": "Sociedad con socios comanditarios e ilimitados.",
+        "Es sociedad mercantil": "Sí",
+        "Número mínimo de socios": 2,
+        "Capital mínimo requerido": "Sí",
+        "Flexibilidad en administración": "Moderada",
+        "Uso común": "Empresas con socios inversionistas y gestores activos",
+        "Derechos": (
             "Posibilidad de tener socios comanditarios sin gestión directa",
             "Acceso a financiamiento mediante emisión de acciones",
             "Socios gestores con control operativo",
         ),
-        "obligaciones_fiscales": (
+        "Obligaciones Fiscales": (
             "Pago de ISR e IVA",
             "Declaraciones mensuales y anuales",
             "Contabilidad electrónica",
             "Retención de impuestos a empleados",
         ),
-        "obligaciones_legales": (
+        "Obligaciones Legales": (
             "Celebración de asambleas anuales",
             "Registro en el RFC",
             "Depósito de estados financieros",
             "Renovación de matrícula mercantil",
         ),
-        "características": (
+        "Características": (
             "Combinación de responsabilidad limitada y ilimitada",
             "Modelo menos común en el mercado actual",
             "Regulación más estricta para socios administradores",
         ),
     },
-    "sofom": {
-        "nombre_regimen": "Sociedades Financieras de Objeto Múltiple (SOFOM)",
-        "descripción": "Instituciones financieras de crédito.",
-        "mercantil": True,
-        "min_socios": None,
-        "capital_minimo": "Variable",
-        "flexibilidad_admin": "Alta",
-        "uso": "Instituciones financieras",
-        "derechos": (
+    "Sociedades Financieras de Objeto Múltiple (SOFOM)": {
+        "Descripción general": "Instituciones financieras de crédito.",
+        "Es sociedad mercantil": "Sí",
+        "Número mínimo de socios": None,
+        "Capital mínimo requerido": "Variable",
+        "Flexibilidad en administración": "Alta",
+        "Uso común": "Instituciones financieras",
+        "Derechos": (
             "Acceso a financiamiento sin ser bancos",
             "Regulación específica en el sector financiero",
             "Capacidad de otorgar créditos y operar en mercados de capital",
         ),
-        "obligaciones_fiscales": (
+        "Obligaciones Fiscales": (
             "Pago de ISR e IVA",
             "Declaraciones mensuales y anuales",
             "Cumplimiento de regulaciones financieras",
         ),
-        "obligaciones_legales": (
+        "Obligaciones Legales": (
             "Debe cumplir con normativas de la CNBV",
             "Registro en el RFC",
             "Cumplimiento de normativas bancarias",
         ),
-        "características": (
+        "Características": (
             "Alta supervisión en prácticas de transparencia",
             "Importante para el crédito empresarial y personal",
         ),
     },
-    "scoop": {
-        "nombre_regimen": "Sociedad Cooperativa",
-        "descripción": "Sociedad basada en cooperación y beneficios colectivos.",
-        "mercantil": True,
-        "min_socios": 5,
-        "capital_minimo": False,
-        "flexibilidad_admin": "Alta",
-        "uso": "Negocios colectivos",
-        "derechos": (
+    "Sociedad Cooperativa": {
+        "Descripción general": "Sociedad basada en cooperación y beneficios colectivos.",
+        "Es sociedad mercantil": "Sí",
+        "Número mínimo de socios": 5,
+        "Capital mínimo requerido": "No",
+        "Flexibilidad en administración": "Alta",
+        "Uso común": "Negocios colectivos",
+        "Derechos": (
             "Administración democrática por los socios",
             "Distribución equitativa de beneficios",
             "Fomento de economía social y solidaria",
         ),
-        "obligaciones_fiscales": (
+        "Obligaciones Fiscales": (
             "Pago de ISR e IVA",
             "Declaraciones mensuales y anuales",
             "Contabilidad electrónica",
         ),
-        "obligaciones_legales": (
+        "Obligaciones Legales": (
             "Registro en el RFC",
             "Renovación de matrícula mercantil",
         ),
-        "características": (
+        "Características": (
             "Modelo basado en participación equitativa",
             "Puede ser de producción, consumo o ahorro",
             "Regulación distinta a sociedades mercantiles tradicionales",
         ),
     },
-    "ap": {
-        "nombre_regimen": "Asociación en Participación",
-        "descripción": "Acuerdo entre empresarios e inversionistas sin sociedad formal.",
-        "mercantil": False,
-        "min_socios": 2,
-        "capital_minimo": False,
-        "flexibilidad_admin": "Alta",
-        "uso": "Inversiones y proyectos específicos",
-        "derechos": (
+    "Asociación en Participación": {
+        "Descripción general": "Acuerdo entre empresarios e inversionistas sin sociedad formal.",
+        "Es sociedad mercantil": "No",
+        "Número mínimo de socios": 2,
+        "Capital mínimo requerido": "No",
+        "Flexibilidad en administración": "Alta",
+        "Uso común": "Inversiones y proyectos específicos",
+        "Derechos": (
             "Socios participan sin figurar en el nombre de la empresa",
             "Permite inversión sin gestión directa",
             "Flexibilidad en acuerdos entre asociados",
         ),
-        "obligaciones_fiscales": ("Pago de ISR", "Declaraciones anuales"),
-        "obligaciones_legales": ("Registro en el RFC",),
-        "características": (
+        "Obligaciones Fiscales": ("Pago de ISR", "Declaraciones anuales"),
+        "Obligaciones Legales": ("Registro en el RFC",),
+        "Características": (
             "No tiene personalidad jurídica propia",
             "Modelo usado en negocios de inversión privada",
             "Regulación flexible en términos de aportación y ganancia",
         ),
     },
+}
+
+regimen_legal = {
+    k: ({"Régimen legal": k} | v) for k, v in sorted(regimen_legal.items())
 }

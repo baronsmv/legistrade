@@ -3,26 +3,32 @@ from django import forms
 from knowledge_base.dicts import knowledge_base as kb
 
 
-def get_choices(attr: str, key: str = "nombre") -> tuple:
-    return tuple((k, v[f"{key}_{attr}"]) for k, v in kb[attr].items())
+def get_choices(attr: str) -> tuple:
+    return tuple((k, k) for k in kb[attr].keys())
 
 
 def bool_choice(label: str, no_aplica: bool = False) -> forms.ChoiceField:
     return forms.ChoiceField(
         label=label,
-        choices=((True, "Sí"), (False, "No"))
-        + (("None", "No aplica") if no_aplica else ()),
+        choices=(("Sí", "Sí"), ("No", "No"))
+        + ((None, "No aplica") if no_aplica else ()),
         widget=forms.RadioSelect,
     )
 
 
 class EmpresaForm(forms.Form):
-    # Perfil legal y operativo de la empresa
-    regimen = forms.ChoiceField(
+    # Perfil legal, fiscal y operativo de la empresa
+    regimen_legal = forms.ChoiceField(
         label="Régimen legal",
-        choices=get_choices("regimen"),
+        choices=get_choices("regimen_legal"),
         widget=forms.Select(attrs={"class": "form-control"}),
         help_text="Selecciona el régimen legal bajo el cual opera tu empresa.",
+    )
+    regimen_fiscal = forms.ChoiceField(
+        label="Régimen Fiscal",
+        choices=get_choices("regimen_fiscal"),
+        widget=forms.Select(attrs={"class": "form-control"}),
+        help_text="Selecciona el régimen fiscal bajo el cual se encuentra registrada tu empresa.",
     )
     sector = forms.ChoiceField(
         label="Sector principal",
@@ -33,9 +39,9 @@ class EmpresaForm(forms.Form):
     antiguedad = forms.ChoiceField(
         label="Años de operación",
         choices=[
-            ("nueva", "Menos de 4 años."),
-            ("intermedia", "Entre 4 y 10 años."),
-            ("establecida", "Más de 10 años."),
+            ("Nueva (menos de 4 años)", "Menos de 4 años"),
+            ("Intermedia (entre 4 y 10 años)", "Entre 4 y 10 años"),
+            ("Establecida (más de 10 años)", "Más de 10 años"),
         ],
         widget=forms.Select(attrs={"class": "form-control"}),
         help_text="Indica cuántos años lleva operando tu empresa.",
@@ -43,10 +49,10 @@ class EmpresaForm(forms.Form):
     tamano = forms.ChoiceField(
         label="Tamaño",
         choices=[
-            ("micro", "Menos de 10 empleados."),
-            ("pequeña", "Entre 11 y 50 empleados."),
-            ("mediana", "Entre 51 y 250 empleados."),
-            ("grande", "Más de 250 empleados."),
+            ("Microempresa (menos de 10 empleados)", "Menos de 10 empleados"),
+            ("Empresa Pequeña (entre 11 y 50 empleados)", "Entre 11 y 50 empleados"),
+            ("Empresa Mediana (entre 51 y 250 empleados)", "Entre 51 y 250 empleados"),
+            ("Empresa Grande (más de 250 empleados)", "Más de 250 empleados"),
         ],
         widget=forms.Select(attrs={"class": "form-control"}),
         help_text="Selecciona el número de empleados trabajando en tu empresa.",
@@ -56,54 +62,42 @@ class EmpresaForm(forms.Form):
     usa_contratos = bool_choice("¿Utiliza contratos escritos?")
     tipo_contratos = forms.MultipleChoiceField(
         label="Tipos de contratos que utiliza",
-        choices=[
-            ("clientes", "Con clientes"),
-            ("proveedores", "Con proveedores"),
-            ("trabajadores", "Con trabajadores"),
-            ("prestadores", "Con prestadores de servicios"),
-        ],
+        choices=(
+            ("Clientes", "Con clientes"),
+            ("Proveedores", "Con proveedores"),
+            ("Trabajadores", "Con trabajadores"),
+            ("Prestadores", "Con prestadores de servicios"),
+        ),
         widget=forms.CheckboxSelectMultiple,
         required=False,
     )
 
     # Requisitos en comercio electrónico
     ecommerce = bool_choice("¿Tiene plataforma de comercio electrónico?")
-    usa_terminos_legales_web = bool_choice(
+    usa_aviso_privacidad = bool_choice(
         "¿Cuenta con aviso de privacidad y términos legales en su sitio web?"
     )
-    usa_medidas_seguridad = bool_choice(
+    seguridad_datos = bool_choice(
         label="¿Tiene medidas de seguridad para proteger los datos personales?"
     )
 
     # Protección legal sobre activos intangibles
-    propiedad_intelectual = forms.ChoiceField(
+    propiedad_intelectual = forms.MultipleChoiceField(
         label="¿Ha registrado propiedad intelectual?",
-        choices=[
-            ("marca", "Marca"),
-            ("patente", "Patente"),
-            ("ambos", "Ambos"),
-            ("ninguno", "Ninguno"),
-        ],
-        widget=forms.Select(attrs={"class": "form-control"}),
+        choices=(
+            ("Marca", "Marca"),
+            ("Patente", "Patente"),
+        ),
+        widget=forms.CheckboxSelectMultiple,
+        required=False,
     )
 
     # Obligaciones fiscales
     declara_impuestos = bool_choice(label="¿Declara impuestos regularmente?")
-    lleva_contabilidad = bool_choice(label="¿Lleva contabilidad electrónica?")
+    lleva_contab_elect = bool_choice(label="¿Lleva contabilidad electrónica?")
 
     # Información fiscal y contable detallada
-    regimen_fiscal = forms.ChoiceField(
-        label="Régimen Fiscal",
-        choices=[
-            ("resico", "Régimen Simplificado de Confianza (RESICO)"),
-            ("rif", "Régimen de Incorporación Fiscal (RIF)"),
-            ("general", "Régimen General de Ley"),
-            ("otra", "Otro"),
-        ],
-        widget=forms.Select(attrs={"class": "form-control"}),
-        help_text="Selecciona el régimen fiscal bajo el cual se encuentra registrada tu empresa.",
-    )
-    usa_cfd = bool_choice(label="¿Emite CFDI?")
+    emite_cfd = bool_choice(label="¿Emite CFDI?")
 
     # Licencias y permisos específicos
     tiene_licencias_permisos = bool_choice(

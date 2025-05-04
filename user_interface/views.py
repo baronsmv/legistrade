@@ -42,14 +42,17 @@ def form(request):
         if empresa_form.is_valid():
             datos = empresa_form.cleaned_data
             logger.debug("Los datos de la empresa son:\n" + pformat(datos))
-            recomendaciones = recommend(datos)
-            logger.debug("Las recomendaciones son:\n" + pformat(recomendaciones))
+            recomendaciones, table = recommend(datos)
+            logger.debug(
+                f"Las recomendaciones son:\n{recomendaciones}\n{pformat(table)}"
+            )
             return render(
                 request,
                 "user_interface/recommend.html",
                 {
                     "subtitle": "Recomendaciones",
-                    "table": recomendaciones,
+                    "text": recomendaciones,
+                    "table": table,
                     "table_title": "Tabla de detalles",
                     "table_columns": ("Concepto", "Detalle"),
                     "footer": footer,
