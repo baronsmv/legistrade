@@ -1,31 +1,31 @@
 <!DOCTYPE html>
 <html lang="es">
-{% load static %}
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>{{ title }}</title>
-    <link rel="stylesheet" href="{% static 'css/frontpage.css' %}">
+    {% load static %}
+    <link href="{% static 'css/frontpage.css' %}" rel="stylesheet">
 </head>
 <body class="frontpage">
-    <div class="logo-container">
-        <img src="{% static 'logo-uaeh.png' %}" alt="Universidad Autónoma del Estado de Hidalgo" class="logo-uaeh">
-        <img src="{% static 'logo-icbi.png' %}" alt="Instituto de Ciencias Básicas e Ingeniería" class="logo-icbi">
-    </div>
-    <h1>{{ title }}</h1>
-    <h2>Universidad Autónoma del Estado de Hidalgo</h2>
-    <h2>Instituto de Ciencias Básicas e Ingeniería</h2>
-    <h2>Licenciatura en Ciencias Computacionales</h2>
-    <h3>Sistemas Basados en Conocimiento</h3>
-    <h3>Integrantes del equipo:</h3>
-    <p>Barón Salinas Mauricio Valentín</p>
-    <p>López López Fernando</p>
-    <p>Valles Aguilera José Eduardo</p>
-    <h3>6° Semestre, Grupo 2</h3>
-    <h2>
-        <a href="{{ intro_url.url }}">
-            <button class="link-button">{{ intro_url.name }}</button>
-        </a>
-    </h2>
+<div class="logo-container">
+    <img alt="Universidad Autónoma del Estado de Hidalgo" class="logo-uaeh" src="{% static 'logo-uaeh.png' %}">
+    <img alt="Instituto de Ciencias Básicas e Ingeniería" class="logo-icbi" src="{% static 'logo-icbi.png' %}">
+</div>
+<h1>{{ title }}</h1>
+<h2>Universidad Autónoma del Estado de Hidalgo</h2>
+<h2>Instituto de Ciencias Básicas e Ingeniería</h2>
+<h2>Licenciatura en Ciencias Computacionales</h2>
+<h3>Sistemas Basados en Conocimiento</h3>
+<h3>Integrantes del equipo:</h3>
+<p>Barón Salinas Mauricio Valentín</p>
+<p>López López Fernando</p>
+<p>Valles Aguilera José Eduardo</p>
+<h3>6° Semestre, Grupo 2</h3>
+<h2>
+    <a href="{{ intro_url.url }}">
+        <button class="link-button">{{ intro_url.name }}</button>
+    </a>
+</h2>
 </body>
 </html>

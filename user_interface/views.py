@@ -1,6 +1,9 @@
+from os.path import join
 from pprint import pformat
 
+from django.conf import settings
 from django.shortcuts import render, reverse
+from markdown import markdown
 
 from knowledge_base.recommend import recommend
 from user_interface.forms import EmpresaForm
@@ -16,23 +19,37 @@ footer = f"2025 {system_name}"
 
 def home(request):
     logger.info("Entrando a la página de inicio (portada).")
-    intro = {"name": "Iniciemos", "url": reverse("user_interface:intro")}
     return render(
         request,
         "user_interface/frontpage.html",
         {
             "title": title,
-            "intro_url": intro,
+            "intro_url": {"name": "Iniciemos", "url": reverse("user_interface:intro")},
         },
     )
 
 
 def intro(request):
     logger.info("Entrando a la página de introducción.")
+    with open(
+        join(settings.BASE_DIR, "markdown", "intro.md"),
+        "r",
+        encoding="utf-8",
+    ) as f:
+        md = f.read()
+    text = markdown(md)
     return render(
         request,
         "user_interface/intro.html",
-        {"title": title, "footer": footer},
+        {
+            "title": title,
+            "form_url": {
+                "name": "Entrar al sistema",
+                "url": reverse("user_interface:recommend"),
+            },
+            "text": text,
+            "footer": footer,
+        },
     )
 
 
