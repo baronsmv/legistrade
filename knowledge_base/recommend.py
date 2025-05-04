@@ -1,6 +1,6 @@
 import logging
 
-from .knowledge_base import knowledge_base as kb
+from .dicts import knowledge_base as kb
 
 dict_attrib: dict[str, str] = {
     "regimen": "Régimen legal",
@@ -31,14 +31,16 @@ key_attrib: dict[str, str] = {
     "derechos": "Derechos",
     "obligaciones_fiscales": "Obligaciones Fiscales",
     "obligaciones_legales": "Obligaciones Legales",
-    # Sociedades
-    "nombre": "Tipo de sociedad/empresa",
-    "descripción": "Descripción general del tipo",
+    # Régimen
+    "nombre_regimen": "Tipo de régimen",
+    "descripción": "Descripción general",
     "mercantil": "Es sociedad mercantil",
     "min_socios": "Número mínimo de socios",
     "capital_minimo": "Capital mínimo requerido",
     "flexibilidad_admin": "Flexibilidad en administración",
     "uso": "Uso común",
+    # Sector
+    "nombre_sector": "Sector principal",
     # Antiguëdad
     "reputación": "Reputación y credibilidad",
     "adaptabilidad": "Adaptabilidad y cambios",
@@ -56,6 +58,9 @@ key_attrib: dict[str, str] = {
     "claridad_acuerdos": "Claridad en acuerdos",
     "protección_incumplimientos": "Protección contra incumplimientos",
     "profesionalismo": "Profesionalismo",
+    # Tipo de contratos
+    "nombre_tipo_contratos": "Tipos de contrato usados",
+    "características_contrato": "Características del contrato",
 }
 
 val_attrib: dict[bool, str] = {
@@ -72,8 +77,9 @@ def recommend(data):
     try:
         return {
             dict_attrib.get(key, key): rename(value)
-            for key in kb.keys()
-            if (
+            for key in dict_attrib.keys()
+            if key in kb
+            and (
                 value := kb[key].get(
                     tuple(data_value)
                     if isinstance((data_value := data.get(key)), list)

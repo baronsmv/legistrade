@@ -1,55 +1,32 @@
 from django import forms
 
+from knowledge_base.dicts import knowledge_base as kb
+
+
+def get_choices(attr: str, key: str = "nombre") -> tuple:
+    return tuple((k, v[f"{key}_{attr}"]) for k, v in kb[attr].items())
+
+
+def bool_choice(label: str, no_aplica: bool = False) -> forms.ChoiceField:
+    return forms.ChoiceField(
+        label=label,
+        choices=((True, "Sí"), (False, "No"))
+        + (("None", "No aplica") if no_aplica else ()),
+        widget=forms.RadioSelect,
+    )
+
 
 class EmpresaForm(forms.Form):
     # Perfil legal y operativo de la empresa
     regimen = forms.ChoiceField(
         label="Régimen legal",
-        choices=[
-            ("sa", "Sociedad Anónima (S.A.)"),
-            ("srl", "Sociedad de Responsabilidad Limitada (S. de R.L.)"),
-            ("sapi", "Sociedad Anónima Promotora de Inversión (S.A.P.I.)"),
-            ("sas", "Sociedad por Acciones Simplificada (S.A.S.)"),
-            ("sc", "Sociedad Civil (S.C.)"),
-            ("sca", "Sociedad Comandita por Acciones (S. en C.A.)"),
-            ("sofom", "Sociedades Financieras de Objeto Múltiple (SOFOM)"),
-            ("scoop", "Sociedad Cooperativa"),
-            ("ap", "Asociación en Participación"),
-        ],
+        choices=get_choices("regimen"),
         widget=forms.Select(attrs={"class": "form-control"}),
         help_text="Selecciona el régimen legal bajo el cual opera tu empresa.",
     )
     sector = forms.ChoiceField(
         label="Sector principal",
-        choices={
-            "agricultura": "Sector Agrícola",
-            "alimentos_bebidas": "Industria de Alimentos y Bebidas",
-            "automotriz": "Industria Automotriz",
-            "comercio": "Sector Comercial",
-            "construcción": "Industria de la Construcción",
-            "ecommerce": "Comercio Electrónico",
-            "educación": "Sector Educativo",
-            "energía": "Sector Energético",
-            "entretenimiento_medios": "Industria del Entretenimiento y Medios",
-            "farmacéutico": "Industria Farmacéutica",
-            "finanzas": "Sector Financiero",
-            "ganadería": "Sector Ganadero",
-            "importación": "Sector de Importación",
-            "industrial": "Industria General",
-            "logística_transporte": "Sector de Logística y Transporte",
-            "manufactura": "Industria Manufacturera",
-            "minería": "Industria Minera",
-            "moda_textil": "Industria de Moda y Textiles",
-            "pesca": "Sector Pesquero",
-            "retail_comercio_menor": "Comercio Minorista",
-            "salud": "Sector Salud",
-            "seguros_financieros": "Sector de Seguros Financieros",
-            "servicios": "Sector de Servicios",
-            "silvicultura": "Sector Forestal",
-            "tecnología": "Industria Tecnológica",
-            "telecomunicaciones": "Sector de Telecomunicaciones",
-            "turismo": "Industria del Turismo",
-        },
+        choices=get_choices("sector"),
         widget=forms.Select(attrs={"class": "form-control"}),
         help_text="Selecciona el sector principal de tu empresa.",
     )
@@ -76,11 +53,7 @@ class EmpresaForm(forms.Form):
     )
 
     # Obligaciones y derechos contractuales
-    usa_contratos = forms.ChoiceField(
-        label="¿Utiliza contratos escritos?",
-        choices=[("sí", "Sí"), ("no", "No")],
-        widget=forms.RadioSelect,
-    )
+    usa_contratos = bool_choice("¿Utiliza contratos escritos?")
     tipo_contratos = forms.MultipleChoiceField(
         label="Tipos de contratos que utiliza",
         choices=[
@@ -94,18 +67,12 @@ class EmpresaForm(forms.Form):
     )
 
     # Requisitos en comercio electrónico
-    ecommerce = forms.BooleanField(
-        label="¿Tiene plataforma de comercio electrónico?", required=False
+    ecommerce = bool_choice("¿Tiene plataforma de comercio electrónico?")
+    usa_terminos_legales_web = bool_choice(
+        "¿Cuenta con aviso de privacidad y términos legales en su sitio web?"
     )
-    usa_terminos_legales_web = forms.ChoiceField(
-        label="¿Cuenta con aviso de privacidad y términos legales en su sitio web?",
-        choices=[(True, "Sí"), (False, "No"), (None, "No aplica")],
-        widget=forms.RadioSelect,
-    )
-    usa_medidas_seguridad = forms.ChoiceField(
-        label="¿¿Tiene medidas de seguridad para proteger los datos personales?",
-        choices=[(True, "Sí"), (False, "No"), (None, "No aplica")],
-        widget=forms.RadioSelect,
+    usa_medidas_seguridad = bool_choice(
+        label="¿Tiene medidas de seguridad para proteger los datos personales?"
     )
 
     # Protección legal sobre activos intangibles
@@ -121,12 +88,8 @@ class EmpresaForm(forms.Form):
     )
 
     # Obligaciones fiscales
-    declara_impuestos = forms.BooleanField(
-        label="¿Declara impuestos regularmente?", required=False
-    )
-    lleva_contabilidad = forms.BooleanField(
-        label="¿Lleva contabilidad electrónica?", required=False
-    )
+    declara_impuestos = bool_choice(label="¿Declara impuestos regularmente?")
+    lleva_contabilidad = bool_choice(label="¿Lleva contabilidad electrónica?")
 
     # Información fiscal y contable detallada
     regimen_fiscal = forms.ChoiceField(
@@ -140,30 +103,21 @@ class EmpresaForm(forms.Form):
         widget=forms.Select(attrs={"class": "form-control"}),
         help_text="Selecciona el régimen fiscal bajo el cual se encuentra registrada tu empresa.",
     )
-    usa_cfd = forms.BooleanField(label="¿Emite CFDI?", required=False)
+    usa_cfd = bool_choice(label="¿Emite CFDI?")
 
     # Licencias y permisos específicos
-    tiene_licencias_permisos = forms.BooleanField(
-        label="¿Posee las licencias y permisos requeridos por su actividad económica?",
-        required=False,
+    tiene_licencias_permisos = bool_choice(
+        "¿Posee las licencias y permisos requeridos por su actividad económica?"
     )
 
     # Internacionalización y comercio exterior
-    tiene_experiencia_exportacion = forms.BooleanField(
-        label="¿Tiene experiencia en exportación?",
-        required=False,
-    )
-    esta_registrada_exportador = forms.BooleanField(
-        label="¿Está registrada en el Padrón de Exportadores?",
-        required=False,
+    tiene_experiencia_exportacion = bool_choice("¿Tiene experiencia en exportación?")
+    esta_registrada_exportador = bool_choice(
+        "¿Está registrada en el Padrón de Exportadores?"
     )
 
     # Estrategias de sostenibilidad y responsabilidad social
-    tiene_practicas_sostenibles = forms.BooleanField(
-        label="¿Implementa prácticas sostenibles?",
-        required=False,
-    )
-    tiene_responsabilidad_social = forms.BooleanField(
-        label="¿Tiene programas de responsabilidad social empresarial?",
-        required=False,
+    tiene_practicas_sostenibles = bool_choice("¿Implementa prácticas sostenibles?")
+    tiene_responsabilidad_social = bool_choice(
+        "¿Tiene programas de responsabilidad social empresarial?"
     )
