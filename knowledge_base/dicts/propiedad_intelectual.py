@@ -1,3 +1,5 @@
+from utils.dicts import nombre_tuples
+
 propiedad_intelectual = {
     (): {
         "Protección legal": "No tiene protección contra uso indebido.",
@@ -25,23 +27,10 @@ propiedad_intelectual = {
     },
 }
 
-propiedad_intelectual = {
-    k: (
-        {
-            "Registro de propiedad intelectual": (
-                value
-                if len(
-                    value := tuple(
-                        (f"De {elemento.lower()}." for elemento in k)
-                        if k
-                        else "Sin registros."
-                    )
-                )
-                > 1
-                else value[0]
-            )
-        }
-        | v
-    )
-    for k, v in propiedad_intelectual.items()
-}
+
+propiedad_intelectual = nombre_tuples(
+    propiedad_intelectual,
+    nombre="Registro de propiedad intelectual",
+    prefijo_opciones="De",
+    si_ninguno="Sin registros.",
+)

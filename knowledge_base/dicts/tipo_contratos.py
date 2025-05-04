@@ -1,3 +1,5 @@
+from utils.dicts import nombre_tuples
+
 tipo_contratos = {
     (): {
         "Características": (
@@ -97,23 +99,9 @@ tipo_contratos = {
     },
 }
 
-tipo_contratos = {
-    k: (
-        {
-            "Contratos usados por la empresa": (
-                value
-                if len(
-                    value := tuple(
-                        (f"Con {elemento.lower()}." for elemento in k)
-                        if k
-                        else "Sin contratos."
-                    )
-                )
-                > 1
-                else value[0]
-            )
-        }
-        | v
-    )
-    for k, v in tipo_contratos.items()
-}
+tipo_contratos = nombre_tuples(
+    tipo_contratos,
+    nombre="Contratos usados por la empresa",
+    prefijo_opciones="Con",
+    si_ninguno="Sin contratos.",
+)

@@ -9,9 +9,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-<header class="navbar">
-    <h1>{{ subtitle }}</h1>
-</header>
+<div class="navbar">
+    <div class="navbar-inner">
+        <h1>{{ subtitle }}</h1>
+        <a href="{{ intro_url.url }}">
+            <button class="btn">{{ intro_url.name }}</button>
+        </a>
+    </div>
+</div>
 
 <main class="container">
     <section class="form-wrapper">

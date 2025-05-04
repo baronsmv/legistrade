@@ -68,13 +68,18 @@ def form(request):
                 "user_interface/recommend.html",
                 {
                     "subtitle": "Recomendaciones",
+                    "text_title": "Recomendaciones personalizadas para su empresa",
                     "text": recomendaciones,
-                    "table": table,
                     "table_title": "Tabla de detalles",
                     "table_columns": ("Concepto", "Detalle"),
+                    "table": table,
                     "footer": footer,
                     "error_message": "No se encontraron recomendaciones. "
                     + "Asegúrate de completar correctamente el formulario.",
+                    "form_url": {
+                        "name": "Volver",
+                        "url": reverse("user_interface:recommend"),
+                    },
                 },
             )
         else:
@@ -88,6 +93,10 @@ def form(request):
         {
             "title": title,
             "subtitle": "Características de la empresa",
+            "intro_url": {
+                "name": "Volver",
+                "url": reverse("user_interface:intro"),
+            },
             "form": empresa_form,
             "footer": footer,
         },
