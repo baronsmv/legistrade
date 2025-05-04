@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    {% load static %}
+    <link href="{% static 'css/legistrade.css' %}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<header class="navbar">
+    <h1>{{ subtitle }}</h1>
+</header>
+
+<main class="container">
+    <section class="form-wrapper">
+        <form method="post">
+            {% csrf_token %}
+
+            {% for field in form %}
+            <div class="form-group">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+
+                {% if field.help_text %}
+                <small class="form-text text-muted">{{ field.help_text }}</small>
+                {% endif %}
+
+                {% if field.errors %}
+                <ul class="error-list">
+                    {% for error in field.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+            {% endfor %}
+
+            <button class="btn" type="submit">Obtener Recomendaciones</button>
+        </form>
+
+    </section>
+</main>
+
+<footer>
+    <p>&copy; {{ footer }}</p>
+</footer>
+</body>
+</html>

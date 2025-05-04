@@ -7,4 +7,5 @@ app_name = "user_interface"
 urlpatterns = [
     path("", views.home, name="home"),
     path("intro", views.intro, name="intro"),
+    path("recommend", views.form, name="recommend"),
 ]

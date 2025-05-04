@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    {% load static %}
+    <link href="{% static 'css/legistrade.css' %}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<header class="navbar">
+    <h1>{{ subtitle }}</h1>
+</header>
+
+<main class="container">
+    {% if table %}
+    {% load custom_filters %}
+    <div class="table-wrapper">
+        <h2>{{ table_title }}</h2>
+        {% for subtable_title, subtable in table.items %}
+        <h3>{{ subtable_title }}</h3>
+        <table>
+            <thead>
+            <tr>
+                {% for col in table_columns %}
+                <th>{{ col }}</th>
+                {% endfor %}
+            </tr>
+            </thead>
+            <tbody>
+            {% for clave, valor in subtable.items %}
+            <tr>
+                <td>{{ clave }}</td>
+                <td>
+                    {% if valor|is_iterable_not_string %}
+                    <ul>
+                        {% for item in valor %}
+                        <li>{{ item }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% else %}
+                    {{ valor }}
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p>{{ error_message }}</p>
+    {% endif %}
+</main>
+
+<footer>
+    <p>&copy; {{ footer }}</p>
+</footer>
+</body>
+</html>
