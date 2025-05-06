@@ -1,5 +1,5 @@
 emite_cfd = {
-    True: {
+    "Sí": {
         "Cumplimiento fiscal": "Cumple con requisitos del SAT y normativas fiscales.",
         "Credibilidad comercial": "Mayor confianza de clientes y proveedores.",
         "Acceso a deducciones fiscales": "Puede aplicar deducciones y beneficios tributarios.",
@@ -7,7 +7,7 @@ emite_cfd = {
         "Automatización contable": "Integración con sistemas de facturación electrónica.",
         "Evita sanciones": "Minimiza riesgo de multas o problemas legales por evasión fiscal.",
     },
-    False: {
+    "No": {
         "Cumplimiento fiscal": "Puede estar en incumplimiento con normativas fiscales.",
         "Credibilidad comercial": "Menor confianza de clientes y proveedores.",
         "Acceso a deducciones fiscales": "Limitaciones para deducciones y beneficios fiscales.",

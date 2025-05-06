@@ -1,5 +1,5 @@
 tiene_responsabilidad_social = {
-    True: {
+    "Sí": {
         "Reputación empresarial": "Mejor percepción pública y confianza de consumidores.",
         "Impacto comunitario": "Contribuye al desarrollo social y ambiental de su entorno.",
         "Fidelización de clientes": "Mayor conexión y lealtad de consumidores comprometidos con valores.",
@@ -7,7 +7,7 @@ tiene_responsabilidad_social = {
         "Cumplimiento normativo": "Alineación con regulaciones y estándares de sostenibilidad.",
         "Ventajas competitivas": "Diferenciación en el mercado por buenas prácticas corporativas.",
     },
-    False: {
+    "No": {
         "Reputación empresarial": "Riesgo de imagen negativa por falta de compromiso social.",
         "Impacto comunitario": "Menor contribución al bienestar social y ambiental.",
         "Fidelización de clientes": "Menos atractivo para consumidores con conciencia social.",
